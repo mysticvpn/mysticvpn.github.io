@@ -3,20 +3,25 @@
 # 
 # ==================================================
 
-MYIP=$(wget -qO- ipv4.icanhazip.com);
+MYIP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 : '
 # check registered ip
 if ! grep -w -q $MYIP daftarip; then
 	echo "Sorry, only registered IPs can use this script!"
 	if [[ $vps = "vps" ]]; then
-		echo "Powered by Team-Archie"
+		echo "Powered by Mystic"
 	else
-		echo "Powered by Team-Archie"
+		echo "Powered by Mystic"
 	fi
 	rm -f /root/daftarip
 	exit
 fi
 '
+# initialisasi var
+export DEBIAN_FRONTEND=noninteractive
+OS=`uname -m`;
+MYIP=$(wget -qO- http://ipecho.net/plain | xargs echo);
+MYIP2="s/xxxxxxxxx/$MYIP/g";
 # initialisasi var
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
