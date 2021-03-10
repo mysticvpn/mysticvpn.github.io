@@ -37,8 +37,10 @@ organizationalunit=IT
 commonname=SquadronVPN.com
 email=SquadronVPN@gmail.com
 #
+echo 'Uninstalling CSF';
 bash /etc/csf/uninstall.sh
 #
+echo 'CSF is uninstalled and Install Iptables';
 iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
 iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -j SNAT --to $MYIP
@@ -63,11 +65,5 @@ iptables -A INPUT -p udp --dport 25 -j DROP
 
 # install neofetch
 echo 'Installation Complete you can now close the terminal window and exit the app!';
-echo '#############################################
-#      UBUNTO 16 Setup OpenVPN/SSH/SSL      #
-#         Authentication file system        #
-#       Setup by: ARCHIE BONA               #
-#       Server System: Digital-Network      #
-#############################################';
 cd
 rm ~/*
